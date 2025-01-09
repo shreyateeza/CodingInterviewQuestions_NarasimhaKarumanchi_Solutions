@@ -29,15 +29,13 @@ bool isBipartite(int V, vector<vector<int>> &adj) {
                 // Traverse all adjacent vertices
                 for(auto &v : adj[u]) {
 
-                    // If the adjacent vertex is uncolored,
-                    // assign alternate color
+                    // If the adjacent vertex is uncolored, assign alternate color
                     if(color[v] == -1) {
                         color[v] = 1 - color[u];
                         q.push(v);
                     }
 
-                    // If the adjacent vertex has the same color,
-                    // graph is not bipartite
+                    // If the adjacent vertex has the same color, graph is not bipartite
                     else if(color[v] == color[u]) {
                         return false;
                     }

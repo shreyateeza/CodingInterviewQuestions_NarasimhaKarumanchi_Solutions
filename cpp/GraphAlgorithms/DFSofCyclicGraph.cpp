@@ -11,8 +11,7 @@ void dfsUtil(int root, vector<vector<int>>& adjList, vector<int>& traversal, vec
 
 
 vector<int> dfs(vector<vector<int>> &adjList) {
-    // add your logic here
-	int N = adjList.size();
+    int N = adjList.size();
 	vector<int> traversal;
 	vector<bool> visited(N, false);
 	dfsUtil(0, adjList, traversal, visited);

@@ -1,13 +1,11 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-// Modified bfs to store the parent of nodes along with the
-// distance from source node
+// Modified bfs to store the parent of nodes along with the distance from source node
 void bfs(vector<vector<int> >& graph, int S,
          vector<int>& par, vector<int>& dist)
 {
-    // queue to store the nodes in the order they are
-    // visited
+    // queue to store the nodes in the order they are visited
     queue<int> q;
     // Mark the distance of the source node as 0
     dist[S] = 0;
@@ -24,11 +22,9 @@ void bfs(vector<vector<int> >& graph, int S,
         for (int neighbour : graph[node]) {
             // Check if the neighbouring node is not visited
             if (dist[neighbour] == 1e9) {
-                // Mark the current node as the parent of
-                // the neighbouring node
+                // Mark the current node as the parent of the neighbouring node
                 par[neighbour] = node;
-                // Mark the distance of the neighbouring
-                // node as distance of the current node + 1
+                // Mark the distance of the neighbouring node as distance of the current node + 1
                 dist[neighbour] = dist[node] + 1;
                 // Insert the neighbouring node to the queue
                 q.push(neighbour);
@@ -37,19 +33,15 @@ void bfs(vector<vector<int> >& graph, int S,
     }
 }
 
-// Function to print the shortest distance between source
-// vertex and destination vertex
-void printShortestDistance(vector<vector<int> >& graph,
-                           int S, int D, int V)
-{
+// Function to print the shortest distance between source vertex and destination vertex
+void printShortestDistance(vector<vector<int> >& graph, int S, int D, int V){
     // par[] array stores the parent of nodes
     vector<int> par(V, -1);
 
     // dist[] array stores distance of nodes from S
     vector<int> dist(V, 1e9);
 
-    // function call to find the distance of all nodes and
-    // their parent nodes
+    // function call to find the distance of all nodes and their parent nodes
     bfs(graph, S, par, dist);
 
     if (dist[D] == 1e9) {
@@ -72,8 +64,7 @@ void printShortestDistance(vector<vector<int> >& graph,
 }
 
 // Driver program to test above functions
-int main()
-{
+int main(){
     // no. of vertices
     int V = 8, E = 10;
     // Source and Destination vertex
@@ -90,7 +81,6 @@ int main()
         graph[edge[0]].push_back(edge[1]);
         graph[edge[1]].push_back(edge[0]);
     }
-
     printShortestDistance(graph, S, D, V);
     return 0;
 }
