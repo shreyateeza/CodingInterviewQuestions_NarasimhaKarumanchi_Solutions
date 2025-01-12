@@ -1,3 +1,5 @@
+// https://leetcode.com/problems/jump-game-ii/solutions/6073724/0-ms-runtime-beats-100-user-code-idea-algorithm-solving-step/
+
 class Solution {
 public:
     int jump(vector<int>& nums) {

@@ -43,3 +43,5 @@ int main() {
     cout << "Longest Palindromic Substring: " << longestPalindrome << endl;
     return 0;
 }
+
+// https://cp-algorithms.com/string/manacher.html

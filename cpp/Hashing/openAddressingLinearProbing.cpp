@@ -32,8 +32,7 @@ class HashMap {
     HashNode<K, V>* dummy;
 
 public:
-    HashMap()
-    {
+    HashMap(){
         // Initial capacity of hash array
         capacity = 20;
         size = 0;
@@ -46,15 +45,12 @@ public:
         // dummy node with value and key -1
         dummy = new HashNode<K, V>(-1, -1);
     }
-    // This implements hash function to find index
-    // for a key
+    // This implements hash function to find index for a key
     int hashCode(K key) { return key % capacity; }
 
     // Function to add key value pair
-    void insertNode(K key, V value)
-    {
-        HashNode<K, V>* temp
-            = new HashNode<K, V>(key, value);
+    void insertNode(K key, V value){
+        HashNode<K, V>* temp = new HashNode<K, V>(key, value);
 
         // Apply hash function to find index for given key
         int hashIndex = hashCode(key);
@@ -67,8 +63,7 @@ public:
             hashIndex %= capacity;
         }
 
-        // if new node to be inserted
-        // increase the current size
+        // if new node to be inserted increase the current size
         if (arr[hashIndex] == NULL
             || arr[hashIndex]->key == -1)
             size++;
@@ -78,8 +73,7 @@ public:
     // Function to delete a key value pair
     V deleteNode(int key)
     {
-        // Apply hash function
-        // to find index for given key
+        // Apply hash function to find index for given key
         int hashIndex = hashCode(key);
 
         // finding the node with given key

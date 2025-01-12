@@ -1,5 +1,4 @@
-// C++ implementation of
-// the Quadratic Probing
+// C++ implementation of the Quadratic Probing
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -12,8 +11,7 @@ void printArray(int arr[], int n)
     }
 }
 
-// Function to implement the
-// quadratic probing
+// Function to implement the quadratic probing
 void hashing(int table[], int tsize, int arr[], int n)
 {
     // Iterating through the array
@@ -22,21 +20,16 @@ void hashing(int table[], int tsize, int arr[], int n)
         // Computing the hash value
         int hv = arr[i] % tsize;
 
-        // Insert in the table if there
-        // is no collision
+        // Insert in the table if there is no collision
         if (table[hv] == -1)
             table[hv] = arr[i];
         else {
-            // If there is a collision
-            // iterating through all
-            // possible quadratic values
+            // If there is a collision iterating through all possible quadratic values
             for (int j = 1; j <= tsize; j++) {
                 // Computing the new hash value
                 int t = (hv + j * j) % tsize;
                 if (table[t] == -1) {
-                    // Break the loop after
-                    // inserting the value
-                    // in the table
+                    // Break the loop after inserting the value in the table
                     table[t] = arr[i];
                     break;
                 }
@@ -47,8 +40,7 @@ void hashing(int table[], int tsize, int arr[], int n)
 }
 
 // Driver code
-int main()
-{
+int main(){
     int arr[] = { 50, 700, 76, 85, 92, 73, 101 };
     int n = sizeof(arr)/sizeof(arr[0]);
 
