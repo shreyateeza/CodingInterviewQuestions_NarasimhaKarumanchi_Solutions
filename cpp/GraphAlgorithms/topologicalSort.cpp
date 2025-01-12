@@ -1,86 +1,71 @@
-// A C++ program to print topological sorting of a DAG
-#include <iostream>
-#include <list>
-#include <stack>
+// Including necessary header file
+#include <bits/stdc++.h>
 using namespace std;
 
-// Class to represent a graph
-class Graph {
-	int V; // No. of vertices'
+// Function to return list containing vertices in
+// Topological order.
+vector<int> topologicalSort(vector<vector<int> >& adj, int V){
+    // Vector to store indegree of each vertex
+    vector<int> indegree(V);
+    for (int i = 0; i < V; i++) {
+        for (auto it : adj[i]) {
+            indegree[it]++;
+        }
+    }
 
-	// Pointer to an array containing adjacency listsList
-	list<int>* adj;
+    // Queue to store vertices with indegree 0
+    queue<int> q;
+    for (int i = 0; i < V; i++) {
+        if (indegree[i] == 0) {
+            q.push(i);
+        }
+    }
+    vector<int> result;
+    while (!q.empty()) {
+        int node = q.front();
+        q.pop();
+        result.push_back(node);
 
-	// A function used by topologicalSort
-	void topologicalSortUtil(int v, bool visited[], stack<int>& Stack);
+        // Decrease indegree of adjacent vertices as the
+        // current node is in topological order
+        for (auto it : adj[node]) {
+            indegree[it]--;
 
-public:
-	Graph(int V); // Constructor
+            // If indegree becomes 0, push it to the queue
+            if (indegree[it] == 0)
+                q.push(it);
+        }
+    }
 
-	// function to add an edge to graph
-	void addEdge(int v, int w);
+    // Check for cycle
+    if (result.size() != V) {
+        cout << "Graph contains cycle!" << endl;
+        return {};
+    }
 
-	// prints a Topological Sort of the complete graph
-	void topologicalSort();
-};
-
-Graph::Graph(int V){
-	this->V = V;
-	adj = new list<int>[V];
+    return result;
 }
 
-void Graph::addEdge(int v, int w){
-	adj[v].push_back(w); // Add w to v’s list.
-}
-
-// A recursive function used by topologicalSort
-void Graph::topologicalSortUtil(int v, bool visited[], stack<int>& Stack){
-	// Mark the current node as visited.
-	visited[v] = true;
-
-	// Recur for all the vertices adjacent to this vertex
-	list<int>::iterator i;
-	for (i = adj[v].begin(); i != adj[v].end(); ++i)
-		if (!visited[*i])
-			topologicalSortUtil(*i, visited, Stack);
-
-	// Push current vertex to stack which stores result
-	Stack.push(v);
-}
-
-// The function to do Topological Sort. It uses recursive topologicalSortUtil()
-void Graph::topologicalSort(){
-	stack<int> Stack;
-
-	// Mark all the vertices as not visited
-	bool* visited = new bool[V];
-	for (int i = 0; i < V; i++)
-		visited[i] = false;
-
-	// Call the recursive helper function to store Topological Sort starting from all vertices one by one
-	for (int i = 0; i < V; i++)
-		if (visited[i] == false)
-			topologicalSortUtil(i, visited, Stack);
-
-	// Print contents of stack
-	while (Stack.empty() == false) {
-		cout << Stack.top() << " ";
-		Stack.pop();
-	}
-}
-
-// Driver program to test above functions
 int main(){
-	// Create a graph given in the above diagram
-	Graph g(6);
-	g.addEdge(5, 2);
-	g.addEdge(5, 0);
-	g.addEdge(4, 0);
-	g.addEdge(4, 1);
-	g.addEdge(2, 3);
-	g.addEdge(3, 1);
+    // Number of nodes
+    int n = 6;
+    // Edges
+    vector<vector<int> > edges
+        = { { 0, 1 }, { 1, 2 }, { 2, 3 }, { 4, 5 }, { 5, 1 }, { 5, 2 } };
+    // Graph represented as an adjacency list
+    vector<vector<int> > adj(n);
+    // Constructing adjacency list
+    for (auto i : edges) {
+        adj[i[0]].push_back(i[1]);
+    }
 
-	cout << "Following is a Topological Sort of the given graph: ";
-	g.topologicalSort();
-	return 0;
+    // Performing topological sort
+    cout << "Topological sorting of the graph: ";
+    vector<int> result = topologicalSort(adj, n);
+
+    // Displaying result
+    for (auto i : result) {
+        cout << i << " ";
+    }
+    return 0;
 }
