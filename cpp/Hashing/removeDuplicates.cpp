@@ -4,6 +4,7 @@ int removeDuplicates(int arr[], int n) {
     unordered_map<int,int> mp;   
     for(int i=0; i<n; i++){
         if(mp.find(arr[i])==mp.end()){
+          mp[arr[i]]++;
           arr[j++] = arr[i];
         }
     }
