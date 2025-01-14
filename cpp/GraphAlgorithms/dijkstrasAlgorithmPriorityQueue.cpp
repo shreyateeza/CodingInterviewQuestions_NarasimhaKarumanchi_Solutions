@@ -1,160 +1,93 @@
-#include <iostream>
-#include <vector>
-#include <queue>
-#include <unordered_map>
-
+#include <bits/stdc++.h>
 using namespace std;
 
-// Define a struct Node to store the values
-struct Node {
-    int v;
-    int distance;
+// Define INF as a large value to represent infinity
+#define INF 0x3f3f3f3f
 
-    // Define a comparator method to compare distance of two nodes
-    bool operator<(const Node& other) const {
-        return distance > other.distance;
-    }
+// Class representing a graph using adjacency list representation
+class Graph {
+    int V; // Number of vertices
+    list<pair<int, int>> *adj; // Adjacency list
+
+public:
+    Graph(int V); // Constructor
+    void addEdge(int u, int v, int w); // Function to add an edge
+    void shortestPath(int s); // Function to print shortest path from source
 };
 
-// Function to implement Dijkstra Algorithm to find shortest distance
-vector<int> dijkstra(int V, vector<vector<pair<int, int>>>& adj, int S) {
-    // Initialize a visited array and map
-    vector<bool> visited(V, false);
-    unordered_map<int, Node> m;
-    
-    // Initialize a priority queue
-    priority_queue<Node> pq;
+// Constructor to allocate memory for the adjacency list
+Graph::Graph(int V) {
+    this->V = V;
+    adj = new list<pair<int, int>>[V];
+}
 
-    // Insert source node into map
-    m[S] = {S, 0};
-    // Add source node to priority queue
-    pq.push({S, 0});
+// Function to add an edge to the graph
+void Graph::addEdge(int u, int v, int w) {
+    adj[u].push_back(make_pair(v, w));
+    adj[v].push_back(make_pair(u, w)); // Since the graph is undirected
+}
 
-    // While the priority queue is not empty
+// Function to print shortest paths from source
+void Graph::shortestPath(int src) {
+    // Create a priority queue to store vertices being processed
+    // Priority queue sorted by the first element of the pair (distance)
+    priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> pq;
+
+    // Create a vector to store distances and initialize all distances as INF
+    vector<int> dist(V, INF);
+
+    // Insert source into priority queue and initialize its distance as 0
+    pq.push(make_pair(0, src));
+    dist[src] = 0;
+
+    // Process the priority queue
     while (!pq.empty()) {
-        // Pop the node with the minimum distance from priority queue
-        Node n = pq.top();
+        // Get the vertex with the minimum distance
+        int u = pq.top().second;
         pq.pop();
 
-        // Get the vertex and distance
-        int v = n.v;
-        int distance = n.distance;
+        // Iterate through all adjacent vertices of the current vertex
+        for (auto &neighbor : adj[u]) {
+            int v = neighbor.first;
+            int weight = neighbor.second;
 
-        // Mark the vertex as visited
-        visited[v] = true;
-
-        // Get the adjacency list of the vertex
-        vector<pair<int, int>> adjList = adj[v];
-
-        // For every adjacent node of the vertex
-        for (const auto& edge : adjList) {
-            // If the node is not yet visited
-            if (!visited[edge.first]) {
-                // If the node is not present in the map
-                if (m.find(edge.first) == m.end()) {
-                    // Put the node in the map
-                    m[edge.first] = {v, distance + edge.second};
-                } else {
-                    // Get the node from the map
-                    Node& sn = m[edge.first];
-
-                    // Check if the new distance is less than the current distance of the node
-                    if (distance + edge.second < sn.distance) {
-                        // Update the node's distance
-                        sn.v = v;
-                        sn.distance = distance + edge.second;
-                    }
-                }
-
-                // Push the node to the priority queue
-                pq.push({edge.first, distance + edge.second});
+            // If a shorter path to v is found
+            if (dist[v] > dist[u] + weight) {
+                // Update distance and push new distance to the priority queue
+                dist[v] = dist[u] + weight;
+                pq.push(make_pair(dist[v], v));
             }
         }
     }
 
-    // Initialize a result vector
-    vector<int> result(V, 0);
-
-    // For every key in the map
-    for (const auto& entry : m) {
-        // Add the distance of the node to the result
-        result[entry.first] = entry.second.distance;
-    }
-
-    // Return the result vector
-    return result;
+    // Print the shortest distances
+    cout << "Vertex Distance from Source" << endl;
+    for (int i = 0; i < V; ++i)
+        cout << i << " \t\t " << dist[i] << endl;
 }
 
+// Driver's code
 int main() {
-    // Initialize adjacency list and map
-    vector<vector<pair<int, int>>> adj;
-    unordered_map<int, vector<pair<int, int>>> m;
+    int V = 9; // Number of vertices
+    Graph g(V);
 
-    // Initialize number of vertices and edges
-    int V = 6;
-    int E = 5;
+    // Add edges to the graph
+    g.addEdge(0, 1, 4);
+    g.addEdge(0, 7, 8);
+    g.addEdge(1, 2, 8);
+    g.addEdge(1, 7, 11);
+    g.addEdge(2, 3, 7);
+    g.addEdge(2, 8, 2);
+    g.addEdge(2, 5, 4);
+    g.addEdge(3, 4, 9);
+    g.addEdge(3, 5, 14);
+    g.addEdge(4, 5, 10);
+    g.addEdge(5, 6, 2);
+    g.addEdge(6, 7, 1);
+    g.addEdge(6, 8, 6);
+    g.addEdge(7, 8, 7);
 
-    // Define u, v, and w
-    vector<int> u = {0, 0, 1, 2, 4};
-    vector<int> v = {3, 5, 4, 5, 5};
-    vector<int> w = {9, 4, 4, 10, 3};
-
-    // For every edge
-    for (int i = 0; i < E; ++i) {
-        // Create an edge pair
-        pair<int, int> edge = {v[i], w[i]};
-
-        // If u[i] is not present in map
-        if (m.find(u[i]) == m.end()) {
-            // Create a new adjacency list
-            vector<pair<int, int>> adjList;
-            m[u[i]] = adjList;
-        }
-
-        // Add the edge to the adjacency list
-        m[u[i]].push_back(edge);
-
-        // Create another edge pair
-        pair<int, int> edge2 = {u[i], w[i]};
-
-        // If v[i] is not present in map
-        if (m.find(v[i]) == m.end()) {
-            // Create a new adjacency list
-            vector<pair<int, int>> adjList2;
-            m[v[i]] = adjList2;
-        }
-
-        // Add the edge to the adjacency list
-        m[v[i]].push_back(edge2);
-    }
-
-    // For every vertex
-    for (int i = 0; i < V; ++i) {
-        // If the vertex is present in map
-        if (m.find(i) != m.end()) {
-            // Add the adjacency list to the main adjacency list
-            adj.push_back(m[i]);
-        } else {
-            // Add null to the main adjacency list
-            adj.push_back({});
-        }
-    }
-
-    // Define source node
-    int S = 1;
-
-    // Call the dijkstra function
-    vector<int> result = dijkstra(V, adj, S);
-
-    // Print the result in the specified format
-    cout << "[";
-    for (int i = 0; i < V; ++i) {
-        if (i > 0) {
-            cout << ", ";
-        }
-        cout << result[i];
-    }
-    cout << "]";
-
+    // Call the shortestPath function
+    g.shortestPath(0);
     return 0;
 }

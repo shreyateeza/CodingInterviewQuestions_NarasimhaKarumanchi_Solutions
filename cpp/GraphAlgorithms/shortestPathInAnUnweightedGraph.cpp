@@ -2,9 +2,7 @@
 using namespace std;
 
 // Modified bfs to store the parent of nodes along with the distance from source node
-void bfs(vector<vector<int> >& graph, int S,
-         vector<int>& par, vector<int>& dist)
-{
+void bfs(vector<vector<int> >& graph, int S, vector<int>& par, vector<int>& dist){
     // queue to store the nodes in the order they are visited
     queue<int> q;
     // Mark the distance of the source node as 0
