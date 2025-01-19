@@ -1,7 +1,6 @@
 // https://www.geeksforgeeks.org/unbounded-knapsack-repetition-items-allowed/ 
 
-// C++ program to implement
-// unbounded knapsack problem using space optimised
+// C++ program to implement unbounded knapsack problem using space optimised
 #include <bits/stdc++.h>
 using namespace std;
 

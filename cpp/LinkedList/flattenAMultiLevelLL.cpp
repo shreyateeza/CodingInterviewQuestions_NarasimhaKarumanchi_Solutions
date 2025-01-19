@@ -1,3 +1,7 @@
+// https://workat.tech/problem-solving/approach/fmlll/flatten-multi-level-linked-list 
+// The idea is to merge each vertical list with its next vertical list
+// after flattening the next vertical list recursively to form a new sorted and flattened list.
+
 /* This is the ListNode class definition
 
 class ListNode {

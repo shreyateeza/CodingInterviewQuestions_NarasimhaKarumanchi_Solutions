@@ -17,10 +17,8 @@ bool evaluate(int b1, int b2, char op) {
     return b1 ^ b2;
 }
 
-// Function which returns the number of ways
-// s[i:j] evaluates to req.
-int countRecur(int i, int j, int req, string &s, 
-               vector<vector<vector<int>>> &memo) {
+// Function which returns the number of ways s[i:j] evaluates to req.
+int countRecur(int i, int j, int req, string &s, vector<vector<vector<int>>> &memo) {
 
     // Base case:
     if (i == j) {
@@ -28,24 +26,20 @@ int countRecur(int i, int j, int req, string &s,
     }
 
     // If value is memoized
-    if (memo[i][j][req] != -1)
-        return memo[i][j][req];
+    if (memo[i][j][req] != -1) return memo[i][j][req];
 
     int ans = 0;
     for (int k = i + 1; k < j; k += 1) {
 
-        // Count Ways in which left substring
-        // evaluates to true and false.
+        // Count Ways in which left substring evaluates to true and false.
         int leftTrue = countRecur(i, k - 1, 1, s, memo);
         int leftFalse = countRecur(i, k - 1, 0, s, memo);
 
-        // Count Ways in which right substring
-        // evaluates to true and false.
+        // Count Ways in which right substring evaluates to true and false.
         int rightTrue = countRecur(k + 1, j, 1, s, memo);
         int rightFalse = countRecur(k + 1, j, 0, s, memo);
 
-        // Check if the combinations results
-        // to req.
+        // Check if the combinations results to req.
         if (evaluate(1, 1, s[k]) == req) {
             ans += leftTrue * rightTrue;
         }

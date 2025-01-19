@@ -54,27 +54,23 @@
 
 #include <bits/stdc++.h>
 using namespace std;
-int MinCost(int arr[],int n)
-{
+
+int MinCost(int arr[],int n){
     int dp[n][n];
-    memset(dp,0,sizeof(dp));
-    int i,j,k;
+    memset(dp, 0, sizeof(dp));
+    int i, j, k;
     int mi;
-    for(i=1;i<n-1;i++)
-    {
+    for(i=1; i<n-1; i++){
         dp[2][i] = arr[i-1]*arr[i]*arr[i+1];
     }
-    for(i=3;i<n;i++)
-    {
-        for(j=1;j<=n-i;j++)
-        {
+    for(i=3; i<n; i++){
+        for(j=1; j<=n-i; j++){
             mi = INT_MAX;
             int x,y;
-            for(k=j;k<j+i-1;k++)
-            {
+            for(k=j; k<j+i-1; k++){
                 x = dp[k-j+1][j];
                 y = dp[(j+i-1)-k][k+1];
-                mi = min(mi,x+y+arr[j-1]*arr[k]*arr[j+i-1]);
+                mi = min(mi, x+y+arr[j-1]*arr[k]*arr[j+i-1]);
             }
             dp[i][j] = mi;
         }
@@ -86,12 +82,10 @@ int main() {
 	//code
 	int t,n,i;
 	cin>>t;
-	while(t--)
-	{
+	while(t--) {
 	    cin>>n;
 	    int a[n];
-	    for(i=0;i<n;i++)
-	    {
+	    for(i=0;i<n;i++){
 	        cin>>a[i];
 	    }
 	    cout<<MinCost(a,n)<<endl;
