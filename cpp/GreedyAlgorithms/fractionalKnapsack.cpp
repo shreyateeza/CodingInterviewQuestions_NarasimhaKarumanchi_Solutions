@@ -1,91 +1,56 @@
-// C++ program to Fractional Knapsack 
-// Problem using STL 
-#include <bits/stdc++.h> 
-using namespace std; 
+// https://www.geeksforgeeks.org/fractional-knapsack-problem/ 
 
-// Function to find maximum profit 
-void maxProfit(vector<int> profit, 
-			vector<int> weight, int N) 
-{ 
+// C++ program to solve fractional Knapsack Problem
+#include <bits/stdc++.h>
+using namespace std;
 
-	// Number of total weights present 
-	int numOfElements = profit.size(); 
-	int i; 
+// Structure for an item which stores weight and corresponding value of Item
+struct Item {
+	int profit, weight;
+	// Constructor
+	Item(int profit, int weight){
+		this->profit = profit;
+		this->weight = weight;
+	}
+};
 
-	// Multimap container to store 
-	// ratio and index 
-	multimap<double, int> ratio; 
+// Comparison function to sort Item according to profit/weight ratio
+static bool cmp(struct Item a, struct Item b){
+	double r1 = (double)a.profit / (double)a.weight;
+	double r2 = (double)b.profit / (double)b.weight;
+	return r1 > r2;
+}
 
-	// Variable to store maximum profit 
-	double max_profit = 0; 
-	for (i = 0; i < numOfElements; i++) { 
+// Main greedy function to solve problem
+double fractionalKnapsack(int W, struct Item arr[], int N) {
+	// Sorting Item on basis of ratio
+	sort(arr, arr + N, cmp);
+	double finalvalue = 0.0;
 
-		// Insert ratio profit[i] / weight[i] 
-		// and corresponding index 
-		ratio.insert(make_pair( 
-			(double)profit[i] / weight[i], i)); 
-	} 
+	// Looping through all items
+	for (int i = 0; i < N; i++) {
+		// If adding Item won't overflow, add it completely
+		if (arr[i].weight <= W) {
+			W -= arr[i].weight;
+			finalvalue += arr[i].profit;
+		}
+		// If we can't add current Item, add fractional part of it
+		else {
+			finalvalue += arr[i].profit * ((double)W / (double)arr[i].weight);
+			break;
+		}
+	}
+	// Returning final value
+	return finalvalue;
+}
 
-	// Declare a reverse iterator 
-	// for Multimap 
-	multimap<double, int>::reverse_iterator it; 
+// Driver code
+int main() {
+	int W = 50;
+	Item arr[] = { { 60, 10 }, { 100, 20 }, { 120, 30 } };
+	int N = sizeof(arr) / sizeof(arr[0]);
 
-	// Traverse the map in reverse order 
-	for (it = ratio.rbegin(); it != ratio.rend(); 
-		it++) { 
-
-		// Fraction of weight of i'th item 
-		// that can be kept in knapsack 
-		double fraction = (double)N / weight[it->second]; 
-
-		// if remaining_weight is greater 
-		// than the weight of i'th item 
-		if (N >= 0 
-			&& N >= weight[it->second]) { 
-
-			// increase max_profit by i'th 
-			// profit value 
-			max_profit += profit[it->second]; 
-
-			// decrement knapsack to form 
-			// new remaining_weight 
-			N -= weight[it->second]; 
-		} 
-
-		// remaining_weight less than 
-		// weight of i'th item 
-		else if (N < weight[it->second]) { 
-			max_profit += fraction 
-						* profit[it->second]; 
-			break; 
-		} 
-	} 
-
-	// Print the maximum profit earned 
-	cout << "Maximum profit earned is:"
-		<< max_profit; 
-} 
-
-// Driver Code 
-int main() 
-{ 
-	// Size of list 
-	int size = 4; 
-
-	// Given profit and weight 
-	vector<int> profit(size), weight(size); 
-
-	// Profit of items 
-	profit[0] = 100, profit[1] = 280, 
-	profit[2] = 120, profit[3] = 120; 
-
-	// Weight of items 
-	weight[0] = 10, weight[1] = 40, 
-	weight[2] = 20, weight[3] = 24; 
-
-	// Capacity of knapsack 
-	int N = 60; 
-
-	// Function Call 
-	maxProfit(profit, weight, N); 
+	// Function call
+	cout << fractionalKnapsack(W, arr, N);
+	return 0;
 }

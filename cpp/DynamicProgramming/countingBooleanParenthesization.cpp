@@ -56,6 +56,7 @@ int countRecur(int i, int j, int req, string &s, vector<vector<vector<int>>> &me
 
     return memo[i][j][req] = ans;
 }
+
 int countWays(string s) {
       int n = s.length();
     vector<vector<vector<int>>> memo
