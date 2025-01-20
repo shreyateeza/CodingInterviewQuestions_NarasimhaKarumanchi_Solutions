@@ -3,16 +3,13 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-typedef pair<int, int> pi;
-
 // User defined stack class
 class Stack{
-    
-    // cnt is used to keep track of the number of
-    //elements in the stack and also serves as key
-    //for the priority queue.
+    // cnt is used to keep track of the number of elements in the stack and also serves as key 
+    // for the priority queue.
     int cnt;
-    priority_queue<pair<int, int> > pq;
+    priority_queue<pair<int, int>> pq;
+
 public:
     Stack():cnt(0){}
     void push(int n);
@@ -21,25 +18,25 @@ public:
     bool isEmpty();
 };
 
-// push function increases cnt by 1 and
-// inserts this cnt with the original value.
+// push function increases cnt by 1 and inserts this cnt with the original value.
 void Stack::push(int n){
     cnt++;
-    pq.push(pi(cnt, n));
+    pq.push({cnt, n});
 }
 
 // pops element and reduces count.
 void Stack::pop(){
-    if(pq.empty()){ cout<<"Nothing to pop!!!";}
+    if(pq.empty()){ 
+        cout<<"Nothing to pop!!!";
+    }
     cnt--;
     pq.pop();
 }
 
-// returns the top element in the stack using
-// cnt as key to determine top(highest priority),
+// returns the top element in the stack using cnt as key to determine top(highest priority),
 // default comparator for pairs works fine in this case
 int Stack::top(){
-    pi temp=pq.top();
+    pair<int, int> temp = pq.top();
     return temp.second;
 }
 
@@ -49,8 +46,7 @@ bool Stack::isEmpty(){
 }
 
 // Driver code
-int main()
-{
+int main() {
     Stack* s=new Stack();
     s->push(1);
     s->push(2);
