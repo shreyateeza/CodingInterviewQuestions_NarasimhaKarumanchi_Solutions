@@ -22,8 +22,7 @@ public:
     bool isFull() { return rear == MAX_SIZE - 1; }
 
     // Function to get the front element of the queue
-    int getFront()
-    {
+    int getFront(){
         if (isEmpty()) {
             cout << "Queue is empty" << endl;
             return -1;
@@ -32,8 +31,7 @@ public:
     }
 
     // Function to get the rear element of the queue
-    int getRear()
-    {
+    int getRear(){
         if (isEmpty()) {
             cout << "Queue is empty" << endl;
             return -1;
@@ -42,8 +40,7 @@ public:
     }
 
     // Function to enqueue elements from the queue
-    void enqueue(int val)
-    {
+    void enqueue(int val){
         // Check overflow condition
         if (isFull()) {
             cout << "Queue is full" << endl;
@@ -58,8 +55,7 @@ public:
     }
 
     // Function to dequeue elements from the queue
-    int dequeue()
-    {
+    int dequeue(){
         // Check underflow condition
         if (isEmpty()) {
             cout << "Queue is empty" << endl;
@@ -76,8 +72,7 @@ public:
     }
 
     // Display function to print the queue
-    void display()
-    {
+    void display(){
         if (isEmpty()) {
             cout << "Queue is empty" << endl;
             return;
@@ -86,13 +81,11 @@ public:
         for (int i = front; i <= rear; i++) {
             cout << arr[i] << " ";
         }
-
         cout << endl;
     }
 };
 
-int main()
-{
+int main(){
     // Created Queue of size 5
     Queue q;
 

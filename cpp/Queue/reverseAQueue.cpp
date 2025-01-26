@@ -3,8 +3,7 @@
 using namespace std;
 
 // Function to return the reversed queue
-queue<int> reverse(queue<int> q)
-{
+queue<int> reverse(queue<int> q){
 	// Size of queue
 	int s = q.size();
 
@@ -12,17 +11,13 @@ queue<int> reverse(queue<int> q)
 	queue<int> ans;
 
 	for (int i = 0; i < s; i++) {
-
-		// Get the last element to the
-		// front of queue
+		// Get the last element to the front of queue
 		for (int j = 0; j < q.size() - 1; j++) {
 			int x = q.front();
 			q.pop();
 			q.push(x);
 		}
-
-		// Get the last element and
-		// add it to the new queue
+		// Get the last element and add it to the new queue
 		ans.push(q.front());
 		q.pop();
 	}
@@ -30,8 +25,7 @@ queue<int> reverse(queue<int> q)
 }
 
 // Driver Code
-int main()
-{
+int main(){
 	queue<int> q;
 
 	// Insert elements

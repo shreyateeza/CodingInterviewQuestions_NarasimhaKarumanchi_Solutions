@@ -1,5 +1,4 @@
-// C++ program for insertion and
-// deletion in Circular Queue
+// C++ program for insertion and deletion in Circular Queue
 #include <iostream>
 using namespace std;
 
@@ -10,7 +9,6 @@ private:
     int capacity;    
 
 public:
-  
     // Constructor to initialize the queue
     MyQueue(int c) {
         arr = new int[c];
@@ -21,7 +19,6 @@ public:
 
     // Get the front element
     int getFront() {
-      
         // Queue is empty
         if (size == 0) 
             return -1; 
@@ -30,7 +27,6 @@ public:
 
     // Get the rear element
     int getRear() {
-      
         // Queue is empty
         if (size == 0) 
             return -1; 
@@ -40,7 +36,6 @@ public:
 
     // Insert an element at the rear
     void enqueue(int x) {
-      
         // Queue is full
         if (size == capacity) 
             return; 
@@ -51,7 +46,6 @@ public:
 
     // Remove an element from the front
     int dequeue() {
-      
         // Queue is empty
         if (size == 0) 
             return -1;

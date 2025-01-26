@@ -2,6 +2,7 @@
 #include <iostream>
 #include <stdexcept>
 using namespace std;
+
 // Template class for a doubly linked list based Deque
 template <typename T> class Deque {
 private:
@@ -14,8 +15,7 @@ private:
         // Pointer to the next node
         Node* next;
 
-        // Constructor to initialize a Node with a given
-        // value
+        // Constructor to initialize a Node with a given value
         Node(T value)
             : data(value)
             , prev(nullptr)
@@ -39,22 +39,18 @@ public:
     {
     }
 
-    // Destructor to clean up memory by removing all
-    // elements
-    ~Deque()
-    {
+    // Destructor to clean up memory by removing all elements
+    ~Deque(){
         while (!is_empty()) {
             pop_front();
         }
     }
 
     // Function to add an element to the front of the Deque
-    void push_front(T value)
-    {
+    void push_front(T value){
         // Create a new node
         Node* new_node = new Node(value);
-        // If Deque is empty, both front and rear point to
-        // the new node
+        // If Deque is empty, both front and rear point to the new node
         if (is_empty()) {
             front = rear = new_node;
         }
@@ -71,13 +67,10 @@ public:
     }
 
     // Function to add an element to the back of the Deque
-    void push_back(T value)
-    {
-        Node* new_node
-            = new Node(value); // Create a new node
+    void push_back(T value){
+        Node* new_node = new Node(value); // Create a new node
         if (is_empty()) {
-            // If Deque is empty, both front  and rear point
-            // to the new node
+            // If Deque is empty, both front  and rear point to the new node
             front = rear = new_node;
         }
         else {
@@ -92,10 +85,8 @@ public:
         size++;
     }
 
-    // Function to remove an element from the front of the
-    // Deque
-    void pop_front()
-    {
+    // Function to remove an element from the front of the Deque
+    void pop_front(){
         if (is_empty()) {
             // Throw an error if Deque is empty
             throw runtime_error("Deque is empty");
@@ -120,8 +111,7 @@ public:
 
     // Function to remove an element from the back of the
     // Deque
-    void pop_back()
-    {
+    void pop_back(){
         if (is_empty()) {
             // Throw an error if Deque is empty
             throw runtime_error("Deque is empty");
@@ -145,8 +135,7 @@ public:
     }
 
     // Function to get the element at the front of the Deque
-    T get_front()
-    {
+    T get_front(){
         if (is_empty()) {
             // Throw an error if Deque is empty
             throw runtime_error("Deque is empty");
@@ -156,8 +145,7 @@ public:
     }
 
     // Function to get the element at the rear of the Deque
-    T get_rear()
-    {
+    T get_rear(){
         if (is_empty()) {
             // Throw an error if Deque is empty
             throw runtime_error("Deque is empty");
@@ -167,22 +155,19 @@ public:
     }
 
     // Function to check if the Deque is empty
-    bool is_empty()
-    {
+    bool is_empty(){
         // Deque is empty if size is 0
         return size == 0;
     }
 
     // Function to get the number of elements in the Deque
-    int get_size()
-    {
+    int get_size(){
         // Return the current size of the Deque
         return size;
     }
 
     // Function to display the elements of the Deque
-    void display()
-    {
+    void display(){
         // Start from the front node
         Node* current = front;
         while (current != nullptr) {
@@ -195,11 +180,9 @@ public:
     }
 };
 
-int main()
-{
+int main(){
     // Create a Deque of integers
     Deque<int> deque;
-
     // Push elements to the front and back
     deque.push_front(10);
     deque.push_back(20);
