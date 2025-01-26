@@ -1,10 +1,9 @@
 #include<iostream>
 using namespace std;
-void Combi(char a[], int reqLen, int s, int currLen, bool check[], int l)
-{
-   if(currLen > reqLen)
-   return;
-   else if (currLen == reqLen) {
+
+void Combi(char a[], int reqLen, int s, int currLen, bool check[], int l){
+   if(currLen > reqLen) return;
+   if (currLen == reqLen) {
       cout<<"\t";
       for (int i = 0; i < l; i++) {
          if (check[i] == true) {
@@ -14,9 +13,7 @@ void Combi(char a[], int reqLen, int s, int currLen, bool check[], int l)
       cout<<"\n";
       return;
    }
-   if (s == l) {
-      return;
-   }
+   if (s == l) return;
    check[s] = true;
    Combi(a, reqLen, s + 1, currLen + 1, check, l);
    check[s] = false;
