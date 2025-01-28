@@ -1,12 +1,9 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-// Function to return the sum of the pair 
-// with sum closest to 0
+// Function to return the sum of the pair with sum closest to 0
 int closestPairSum(vector<int>& arr) {
-  
     sort(arr.begin(), arr.end());    
-    
     int n = arr.size();
     
     // Variable to store the closest sum
@@ -14,19 +11,12 @@ int closestPairSum(vector<int>& arr) {
 
     // Iterate over the array
     for (int i = 0; i < n; i++) {
-      
-        // Consider current element as first 
-        // element of the pair and find the
-        // other element using binary search
+        // Consider current element as first element of the pair and find the other element using binary search
         int x = arr[i];
-        
         int left = i + 1, right = n - 1;
-
         while (left <= right) {
             int mid = (left + right) / 2;
-
             int curr = arr[mid] + x;
-
             // If exact pair is found
             if (curr == 0) {
                 return 0; 
@@ -37,9 +27,7 @@ int closestPairSum(vector<int>& arr) {
                 res = curr;
             }
 
-            // If current is smaller than 0,
-            // go to right side. Else on the
-            // left side.
+            // If current is smaller than 0, go to right side. Else on the left side.
             if (curr < 0) {
                 left = mid + 1;
             } else {

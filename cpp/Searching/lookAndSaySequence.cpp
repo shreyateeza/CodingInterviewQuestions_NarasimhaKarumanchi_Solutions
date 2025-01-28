@@ -1,16 +1,13 @@
 // C++ code to implement the above approach
 #include <iostream>
 #include <vector>
-
 using namespace std;
 
-// Function to generate the nth row of the look-and-say
-// pattern
+// Function to generate the nth row of the look-and-say pattern
 
-string generateNthRow(int n)
-{
+string generateNthRow(int n){
   //vector to store all the intermediary results
-    vector<string> dp(n + 1);
+  vector<string> dp(n + 1);
   //initialization
     dp[1] = "1";
     for (int i = 2; i <= n; i++) {
@@ -30,8 +27,7 @@ string generateNthRow(int n)
     return dp[n];
 }
 
-int main()
-{
+int main(){
     int n = 3;
     cout << generateNthRow(n) << endl;
     return 0;

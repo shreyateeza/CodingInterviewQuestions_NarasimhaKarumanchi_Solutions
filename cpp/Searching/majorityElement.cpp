@@ -1,6 +1,4 @@
-// C++ program to find Majority
-// element in an array
-
+// C++ program to find Majority element in an array
 #include <bits/stdc++.h>
 using namespace std;
 

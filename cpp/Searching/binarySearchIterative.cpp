@@ -3,8 +3,7 @@
 using namespace std;
 
 // An iterative binary search function.
-int binarySearch(int arr[], int low, int high, int x)
-{
+int binarySearch(int arr[], int low, int high, int x){
     while (low <= high) {
         int mid = low + (high - low) / 2;
 
@@ -26,8 +25,7 @@ int binarySearch(int arr[], int low, int high, int x)
 }
 
 // Driver code
-int main(void)
-{
+int main(void){
     int arr[] = { 2, 3, 4, 10, 40 };
     int x = 10;
     int n = sizeof(arr) / sizeof(arr[0]);

@@ -2,10 +2,11 @@
 using namespace std;
 
 /* function to get factorial of n */
-int fact(int n);
+int fact(int n) { 
+	return (n == 0) ? 1 : n * fact(n - 1);
+}
 
-void printRepeating(int arr[], int size)
-{
+void printRepeating(int arr[], int size){
 	int S = 0; /* S is for sum of elements in arr[] */
 	int P = 1; /* P is for product of elements in arr[] */
 	int x, y; /* x and y are two repeating elements */
@@ -29,11 +30,8 @@ void printRepeating(int arr[], int size)
 	cout << "Repeating elements are " << x << " " << y;
 }
 
-int fact(int n) { return (n == 0) ? 1 : n * fact(n - 1); }
-
 // Driver code
-int main()
-{
+int main(){
 	int arr[] = { 4, 2, 4, 5, 2, 3, 1 };
 	int arr_size = sizeof(arr) / sizeof(arr[0]);
 	printRepeating(arr, arr_size);

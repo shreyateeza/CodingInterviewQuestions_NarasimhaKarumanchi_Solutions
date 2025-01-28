@@ -2,8 +2,7 @@
 using namespace std;
 
 // Function to find the kth smallest array element
-int kthSmallest(int arr[], int N, int K)
-{
+int kthSmallest(int arr[], int N, int K){
     // Create a max heap (priority queue)
     priority_queue<int> pq;
 
@@ -22,13 +21,10 @@ int kthSmallest(int arr[], int N, int K)
 }
 
 // Driver's code:
-int main()
-{
+int main(){
     int N = 10;
     int arr[N] = { 10, 5, 4, 3, 48, 6, 2, 33, 53, 10 };
     int K = 4;
-
     // Function call
-    cout << "Kth Smallest Element is: "
-         << kthSmallest(arr, N, K);
+    cout << "Kth Smallest Element is: " << kthSmallest(arr, N, K);
 }

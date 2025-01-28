@@ -3,24 +3,21 @@ using namespace std;
 
 // Function to segregate even and odd numbers
 void segregate(vector<int>& arr) {
-    int lo = 0, hi = arr.size() - 1;
-
-    // Iterate while hi >= lo
-    while (hi >= lo) {
-      
-        // Check if arr[lo] is odd
-        if (arr[lo] % 2 != 0) {
-            if (arr[hi] % 2 == 0) {
-              
-                // Swap arr[lo] and arr[hi]
-                swap(arr[lo], arr[hi]);
-                lo++;
-                hi--;
+    int low = 0, high = arr.size() - 1;
+    // Iterate while high >= low
+    while (high >= low) {
+        // Check if arr[low] is odd
+        if (arr[low] % 2 != 0) {
+            if (arr[high] % 2 == 0) {
+                // Swap arr[low] and arr[high]
+                swap(arr[low], arr[high]);
+                low++;
+                high--;
             } else {
-                hi--;
+                high--;
             }
         } else {
-            lo++;
+            low++;
         }
     }
 }
@@ -29,7 +26,6 @@ void segregate(vector<int>& arr) {
 int main() {
     vector<int> arr = {1, 2, 3, 4, 5, 6};
     segregate(arr);
-    for (int x : arr)
-        cout << x << " ";
+    for (int x : arr) cout << x << " ";
     return 0;
 }

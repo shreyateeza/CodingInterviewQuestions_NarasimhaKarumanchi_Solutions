@@ -1,23 +1,17 @@
-// C++ program to find Maximum difference 
-// between two elements such that larger 
-// element appears after the smaller number
+// C++ program to find Maximum difference between two elements such that larger element appears after the smaller number
 #include <bits/stdc++.h>
 using namespace std;
 
-/* The function assumes that there are 
-at least two elements in array. The 
-function returns a negative value if the
-array is sorted in decreasing order and 
+/* The function assumes that there are at least two elements in array. The 
+function returns a negative value if the array is sorted in decreasing order and 
 returns 0 if elements are equal */
-int maxDiff (int arr[], int n)
-{
+int maxDiff (int arr[], int n){
 	// Initialize diff, current sum and max sum
 	int diff = arr[1]-arr[0];
 	int curr_sum = diff;
 	int max_sum = curr_sum;
 
-	for(int i=1; i<n-1; i++)
-	{
+	for(int i=1; i<n-1; i++){
 		// Calculate current diff
 		diff = arr[i+1]-arr[i];
 
