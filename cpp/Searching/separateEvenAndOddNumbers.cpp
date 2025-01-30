@@ -5,7 +5,7 @@ using namespace std;
 void segregate(vector<int>& arr) {
     int low = 0, high = arr.size() - 1;
     // Iterate while high >= low
-    while (high >= low) {
+    while (low <= high) {
         // Check if arr[low] is odd
         if (arr[low] % 2 != 0) {
             if (arr[high] % 2 == 0) {
@@ -13,10 +13,12 @@ void segregate(vector<int>& arr) {
                 swap(arr[low], arr[high]);
                 low++;
                 high--;
-            } else {
+            } 
+            else {
                 high--;
             }
-        } else {
+        } 
+        else {
             low++;
         }
     }

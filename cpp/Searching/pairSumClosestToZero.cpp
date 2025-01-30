@@ -4,8 +4,7 @@ using namespace std;
 // Function to return the sum of the pair with sum closest to 0
 int closestPairSum(vector<int>& arr) {
     sort(arr.begin(), arr.end());    
-    int n = arr.size();
-    
+    int n = arr.size(); 
     // Variable to store the closest sum
     int res = INT_MAX;
 
@@ -21,12 +20,10 @@ int closestPairSum(vector<int>& arr) {
             if (curr == 0) {
                 return 0; 
             }
-
             // Update res if the current pair is closer
             if (abs(curr) < abs(res)) {
                 res = curr;
             }
-
             // If current is smaller than 0, go to right side. Else on the left side.
             if (curr < 0) {
                 left = mid + 1;
@@ -35,7 +32,6 @@ int closestPairSum(vector<int>& arr) {
             }
         }
     }
-
     return res;
 }
 

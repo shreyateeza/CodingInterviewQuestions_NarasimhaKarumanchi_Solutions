@@ -1,8 +1,6 @@
 class Solution {
 public:
     int threeSumClosest(vector<int>& nums, int target) {
-        vector<vector<int>> result;
-        set<vector<int>> st;
         int diff = INT_MAX;
         sort(nums.begin(), nums.end());
         int N = nums.size();

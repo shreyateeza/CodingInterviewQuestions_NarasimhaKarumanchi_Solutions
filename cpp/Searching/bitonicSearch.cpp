@@ -34,11 +34,11 @@ int descendingBinarySearch(int arr[], int low, int high, int key){
 int findBitonicPoint(int arr[], int n, int l, int r){
 	int mid;
 	int bitonicPoint = 0;
-	mid = (r + l) / 2;
-	if (arr[mid] > arr[mid - 1] && arr[mid] > arr[mid + 1]){
+	mid = l + (r - l) / 2;
+	if (arr[mid-1] < arr[mid] && arr[mid] > arr[mid+1]){
 		return mid;
 	}
-	else if (arr[mid-1] < arr[mid] && arr[mid] < arr[mid + 1]){
+	else if (arr[mid-1] < arr[mid] && arr[mid] < arr[mid+1]){
 		bitonicPoint = findBitonicPoint(arr, n, mid, r);
 	}
 	else if (arr[mid-1] > arr[mid] && arr[mid] > arr[mid+1]){

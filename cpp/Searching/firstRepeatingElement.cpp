@@ -5,15 +5,11 @@ int findRepeatingElementArray(int arr[], int n){
    int minRetIndex = -1;
    set<int> visitedElements;
    for (int i = n - 1; i >= 0; i--){
-      if (visitedElements.find(arr[i]) != visitedElements.end())
-         minRetIndex = i;
-      else
-         visitedElements.insert(arr[i]);
+      if (visitedElements.find(arr[i]) != visitedElements.end()) minRetIndex = i;
+      else visitedElements.insert(arr[i]);
    }
-   if (minRetIndex != -1)
-      return arr[minRetIndex];
-   else
-      return -1;
+   if (minRetIndex != -1) return arr[minRetIndex];
+   return -1;
 }
 
 int main(){

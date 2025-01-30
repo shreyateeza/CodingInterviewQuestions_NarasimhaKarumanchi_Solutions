@@ -1,3 +1,5 @@
+// https://www.geeksforgeeks.org/egg-dropping-puzzle-dp-11/ 
+
 // C++ program to find minimum number of trials in worst case.
 #include <bits/stdc++.h>
 using namespace std;

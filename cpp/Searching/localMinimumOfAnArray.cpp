@@ -11,7 +11,7 @@ int localMinUtil(int arr[], int low, int high, int n){
 		return mid;
 
 	// If middle element is not minima and its left neighbour is smaller than it, then left half must have a local minima.
-	else if (mid > 0 && arr[mid-1] < arr[mid])
+	if (mid > 0 && arr[mid-1] < arr[mid])
 		return localMinUtil(arr, low, (mid -1), n);
 
 	// If middle element is not minima and its right neighbour is smaller than it, then right half must have a local minima.

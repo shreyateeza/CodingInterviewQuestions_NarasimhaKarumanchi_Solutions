@@ -14,9 +14,11 @@ int majorityElement(const vector<int>& arr) {
         if (count == 0) {
             candidate = num;
             count = 1;
-        } else if (num == candidate) {
+        } 
+        else if (num == candidate) {
             count++;
-        } else {
+        } 
+        else {
             count--;
         }
     }
@@ -32,9 +34,8 @@ int majorityElement(const vector<int>& arr) {
     // If count is greater than n / 2, return the candidate; otherwise, return -1
     if (count > n / 2) {
         return candidate;
-    } else {
-        return -1;
     }
+    return -1;
 }
 
 int main() {
