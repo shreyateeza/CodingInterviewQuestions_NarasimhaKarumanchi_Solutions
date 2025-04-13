@@ -3,8 +3,7 @@
 #include <vector>
 using namespace std;
 
-void heapSort(int arr[], int n)
-{
+void heapSort(int arr[], int n){
 	// Convert array to vector
 	vector<int> v(arr, arr + n);
 
@@ -18,13 +17,10 @@ void heapSort(int arr[], int n)
 	copy(v.begin(), v.end(), arr);
 }
 
-int main()
-{
+int main(){
 	int arr[] = { 60, 20, 40, 70, 30, 10 };
 	int n = sizeof(arr) / sizeof(arr[0]);
-
 	heapSort(arr, n);
-
 	cout << "Sorted array is \n";
 	for (int i = 0; i < n; ++i)
 		cout << arr[i] << " ";

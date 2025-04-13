@@ -9,9 +9,7 @@ void random_shuffle(int arr[]) {
    srand(time(NULL));
    for (int i = MAX - 1; i > 0; i--) {
       int j = rand()%(i + 1);
-      int temp = arr[i];
-      arr[i] = arr[j];
-      arr[j] = temp;
+      swap(arr[i], arr[j]);
    }
 }
 // Partitioning the array on the basis of values at high as pivot value.

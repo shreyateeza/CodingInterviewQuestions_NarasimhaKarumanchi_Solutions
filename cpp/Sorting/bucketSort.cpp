@@ -1,5 +1,4 @@
 // Bucket sort in C++
-
 #include <iomanip>
 #include <iostream>
 using namespace std;

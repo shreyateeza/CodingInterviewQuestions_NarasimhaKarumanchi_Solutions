@@ -1,13 +1,10 @@
 // Counting sort in C++ programming
-
 #include <iostream>
 using namespace std;
 
 void countSort(int array[], int size) {
-  // The size of count must be at least the (max+1) but
-  // we cannot assign declare it as int count(max+1) in C++ as
-  // it does not support dynamic memory allocation.
-  // So, its size is provided statically.
+  // The size of count must be at least the (max+1) but we cannot assign declare it as int count(max+1) in C++ as
+  // it does not support dynamic memory allocation. So, its size is provided statically.
   int output[10];
   int count[10];
   int max = array[0];
