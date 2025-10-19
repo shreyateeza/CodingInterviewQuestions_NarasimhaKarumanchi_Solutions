@@ -13,7 +13,7 @@ void maxHeapify(vector<int>& arr, int n, int idx){
     int l = 2 * idx + 1;
     int r = 2 * idx + 2;
     int max = idx;
-    if (l < n && arr[l] > arr[idx]) max = l;
+    if (l < n && arr[l] > arr[max]) max = l;
     if (r < n && arr[r] > arr[max]) max = r;
     // Put maximum value at root and recur for the child with the maximum value
     if (max != idx) {
