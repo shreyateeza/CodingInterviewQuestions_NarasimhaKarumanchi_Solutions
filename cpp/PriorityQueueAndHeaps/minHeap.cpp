@@ -1,7 +1,8 @@
 #include <iostream>
 #include <vector>
+using namespace std;
 
-void heapify(std::vector<int>& arr, int n, int i) {
+void heapify(vector<int>& arr, int n, int i) {
     int smallest = i;       // Initialize smallest as root
     int left = 2 * i + 1;   // left child
     int right = 2 * i + 2;  // right child
@@ -16,14 +17,14 @@ void heapify(std::vector<int>& arr, int n, int i) {
 
     // If smallest is not root
     if (smallest != i) {
-        std::swap(arr[i], arr[smallest]);
+        swap(arr[i], arr[smallest]);
 
         // Recursively heapify the affected sub-tree
         heapify(arr, n, smallest);
     }
 }
 
-void buildMinHeap(std::vector<int>& arr) {
+void buildMinHeap(vector<int>& arr) {
     int n = arr.size();
 
     // Start from last non-leaf node and heapify each node
@@ -32,13 +33,13 @@ void buildMinHeap(std::vector<int>& arr) {
 }
 
 int main() {
-    std::vector<int> arr = {3, 5, 1, 10, 2};
+    vector<int> arr = {3, 5, 1, 10, 2};
 
     buildMinHeap(arr);
 
-    std::cout << "Min heap: ";
+    cout << "Min heap: ";
     for (int val : arr) {
-        std::cout << val << " ";
+        cout << val << " ";
     }
     return 0;
 }
