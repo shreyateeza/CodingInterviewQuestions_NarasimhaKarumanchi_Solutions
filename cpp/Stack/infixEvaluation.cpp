@@ -150,3 +150,15 @@ int main() {
 	cout << evaluate("100 * ( 2 + 12 ) / 14");
 	return 0;
 }
+
+/*
+1. stack to store integer values
+2. stack to store operators
+3. evaluate token string
+3.1. token is whitespace
+3.2. token is opening brace
+3.3. token is number
+3.4. token is closing brace
+3.5. token is operator
+4. evaluate ops stack if not empty
+*/
