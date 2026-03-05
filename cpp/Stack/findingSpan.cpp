@@ -1,5 +1,8 @@
 // C++ program to calculate stock span 
 // values using a stack
+// The stock span of a day is the number of consecutive days 
+// before it (including the current day) for which the stock 
+// price was less than or equal to the price on that day.
 #include <bits/stdc++.h>
 using namespace std;
 
