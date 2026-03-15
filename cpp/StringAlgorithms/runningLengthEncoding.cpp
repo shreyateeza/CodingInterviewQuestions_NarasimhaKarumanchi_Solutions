@@ -24,3 +24,5 @@ int main()
 	printRLE(str);
 	return 0;
 }
+
+// Final Console Output: w4a3d1e1x6y1w3

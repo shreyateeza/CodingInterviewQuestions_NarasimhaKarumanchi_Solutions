@@ -151,3 +151,43 @@ int main()
 
     return 0;
 }
+
+
+// Code 2 for Printing a Trie
+
+#include <iostream>
+#include <vector>
+#include <string>
+#include <stack>
+
+using namespace std;
+
+void printTrieIterative(TrieNode* root) {
+    if (!root) return;
+
+    // Stack stores pairs of {node, string_prefix}
+    stack<pair<TrieNode*, string>> s;
+    s.push({root, ""});
+
+    while (!s.empty()) {
+        pair<TrieNode*, string> curr = s.top();
+        s.pop();
+
+        TrieNode* node = curr.first;
+        string prefix = curr.second;
+
+        // If this node marks the end of a word, print it
+        if (node->isEndOfWord) {
+            cout << prefix << endl;
+        }
+
+        // Push all children to the stack. 
+        // Iterate backwards (z to a) if you want to print in alphabetical order
+        for (int i = 25; i >= 0; i--) {
+            if (node->children[i] != nullptr) {
+                char childChar = 'a' + i;
+                s.push({node->children[i], prefix + childChar});
+            }
+        }
+    }
+}

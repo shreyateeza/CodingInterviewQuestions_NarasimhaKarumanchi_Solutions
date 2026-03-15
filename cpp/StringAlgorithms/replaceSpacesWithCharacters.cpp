@@ -1,40 +1,46 @@
 #include <iostream>
 #include <string>
-
+#include <algorithm>
 using namespace std;
 
-void replaceSpaces(char* str, int length) {
-  int spaceCount = 0; 
-  for (int i = 0; i < length; i++) {
-    if (str[i] == ' ') {
-      spaceCount++;
+void replaceSpacesInPlace(string& str, int actualLength) {
+    int spaceCount = 0;
+    for (int i = 0; i < actualLength; i++) {
+        if (str[i] == ' ') {
+            spaceCount++;
+        }
     }
-  }
 
-  int newLength = length + spaceCount * 2; 
-  str[newLength] = '\0'; 
+    int newLength = actualLength + spaceCount * 2;
+    // Resize the string to the new length
+    str.resize(newLength); //
 
-  for (int i = length - 1; i >= 0; i--) {
-    if (str[i] == ' ') {
-      str[newLength - 1] = '0';
-      str[newLength - 2] = '2';
-      str[newLength - 3] = '%';
-      newLength -= 3;
-    } else {
-      str[newLength - 1] = str[i];
-      newLength--;
+    int originalIndex = actualLength - 1;
+    int newIndex = newLength - 1;
+
+    while (originalIndex >= 0) {
+        if (str[originalIndex] == ' ') {
+            str[newIndex] = '0';
+            str[newIndex - 1] = '2';
+            str[newIndex - 2] = '%';
+            newIndex -= 3;
+        } else {
+            str[newIndex] = str[originalIndex];
+            newIndex--;
+        }
+        originalIndex--;
     }
-  }
 }
 
 int main() {
-  char str[] = "Mr John Smith okay  okay    "; 
-  int length = 24; // Actual length of the string without extra spaces
+    // Note: The input string must be a string or a large enough char array.
+    // For string, resize handles memory management.
+    string s = "Mr John Smith    "; // Assume original length is 13 ('M' to 'h')
+    int length = 13; // The actual length of the string content
 
-  replaceSpaces(str, length);
+    replaceSpacesInPlace(s, length);
 
-  cout << str << endl; 
-  return 0;
+    cout << s << endl; // Output: Mr%20John%20Smith
+
+    return 0;
 }
-
-// Answer: Mr%20John%20Smith%20okay%20%20okay

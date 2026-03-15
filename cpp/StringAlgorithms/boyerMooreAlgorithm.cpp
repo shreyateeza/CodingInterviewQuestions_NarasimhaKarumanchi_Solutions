@@ -410,6 +410,7 @@ $$\text{Shift} = \max(\text{Bad Character Shift}, \text{Good Suffix Shift})$$
 
 /*
 This is the complete, high-performance **Boyer-Moore String Matching Algorithm**. It combines both the **Bad Character Heuristic** and the **Good Suffix Heuristic** to ensure the maximum possible shift at every mismatch.
+*/
 
 ```cpp
 #include <iostream>
