@@ -22,9 +22,7 @@ Node* insert(Node* root, int x)
     if (root == NULL)
         return temp;
 
-    // Find the node who is going
-    // to have the new node temp as
-    // it child. The parent node is
+    // Find the node who is going to have the new node temp as it child. The parent node is
     // mainly going to be a leaf node
     Node *parent = NULL, *curr = root;
     while (curr != NULL) {
@@ -37,8 +35,7 @@ Node* insert(Node* root, int x)
             return root;
     }
 
-    // If x is smaller, make it
-    // left child, else right child
+    // If x is smaller, make it left child, else right child
     if (parent->key > x)
         parent->left = temp;
     else
@@ -46,8 +43,7 @@ Node* insert(Node* root, int x)
     return root;
 }
 
-// A utility function to do inorder
-// tree traversal
+// A utility function to do inorder tree traversal
 void inorder(Node* root)
 {
     if (root != NULL) {

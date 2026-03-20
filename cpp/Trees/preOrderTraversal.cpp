@@ -20,8 +20,9 @@ public:
                 st.push(root);
                 root = root->left;
             }
-            root = st.top()->right;
+            TreeNode* temp = st.top();
             st.pop();
+            root = temp->right;
         }
         return preOrder;
     }
